@@ -20,7 +20,7 @@ pipeline {
                 sh "docker rm ${CONTAINER_NAME} || true"
 
                 // Запуск контейнера из локального образа
-                sh "docker run -d --network host --name ${CONTAINER_NAME} ${DOCKER_IMAGE}"
+                sh "docker run -d -p 192.168.1.5:5000:5000 --name ${CONTAINER_NAME} ${DOCKER_IMAGE}"
                 }
             }
         }
