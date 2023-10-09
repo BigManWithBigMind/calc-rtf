@@ -5,9 +5,9 @@ app = Flask(__name__)
 @app.route('/calculate', methods=['POST'])
 def calculate():
     data = request.get_json()
-    a = data.get('a')
-    b = data.get('b')
-    operation = data.get('operation')
+    a = data['a']
+    b = data['b']
+    operation = data['operation']
 
     if operation == 'add':
         result = a + b
@@ -22,11 +22,7 @@ def calculate():
     else:
         return jsonify({'error': 'Invalid operation'}), 400
 
-    response = {
-        'result': result
-    }
-
-    return jsonify(response)
+    return jsonify({'result': result})
 
 if __name__ == '__main__':
-    app.run(host='0.0.0.0', port=8080)
+    app.run(debug=True)
