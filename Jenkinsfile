@@ -7,6 +7,11 @@ pipeline {
   }
 
     stages {
+        stage('Checkout') {
+            steps {
+                checkout scm
+            }
+        }
         stage('Deploy Container') {
             steps {
                 script {
