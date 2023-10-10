@@ -19,7 +19,7 @@ jobs:
         DOCKER_USER: ${{ secrets.DOCKER_USERNAME}}
         DOCKER_PASSWORD: ${{ secrets.DOCKER.PASSWORD }}
       run:
-        docker login -u rusyasun --password-stdin ${{ env.DOCKER_PASSWORD}}
+        docker login -u rusyasun -p w-Afsafsa13
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag rusyasun/calculator-app:${{ github.sha }}
 
