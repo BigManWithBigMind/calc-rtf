@@ -21,6 +21,8 @@ pipeline {
                         dockerImage.push()
                     }
                 }
+            }
+        }
         stage('Deploy Container') {
             steps {
                 script {
@@ -42,4 +44,4 @@ pipeline {
             }
         }
     }
-}
+            
