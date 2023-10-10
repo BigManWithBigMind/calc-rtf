@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         CONTAINER_NAME = 'calculator-app-container'  // Имя контейнера
-        DOCKER_IMAGE = 'BigManWithBigMind/calc-rtf'
+        DOCKER_IMAGE = 'bigmanwithbigmind/calc-rtf'
   }
 
     stages {
@@ -16,7 +16,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                sh 'docker build -t BigManWithBigMind/calc-rtf:latest .'
+                sh 'docker build -t bigmanwithbigmind/calc-rtf:latest .'
                     }
                 }
             }
