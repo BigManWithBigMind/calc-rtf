@@ -2,16 +2,25 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'calculator-app:1' // Замените на имя вашего локального образа
         CONTAINER_NAME = 'calculator-app-container'  // Имя контейнера
+        DOCKER_IMAGE = 'calculator-app'
   }
 
     stages {
+        
         stage('Checkout') {
             steps {
                 checkout scm
             }
         }
+        stage('Build') {
+            steps {
+                script {
+                    docker.withServer('tcp://192.168.1.5:2375') {
+                        def dockerImage = docker.build("${env.DOCKER_IMAGE}:1" "-f Dockerfile .")
+                        dockerImage.push()
+                    }
+                }
         stage('Deploy Container') {
             steps {
                 script {
