@@ -17,7 +17,7 @@ pipeline {
             steps {
                 script {
                     docker.withServer('tcp://192.168.1.5:2375') {
-                        def dockerImage = docker.build("${env.DOCKER_IMAGE}:1" "-f Dockerfile .")
+                        def dockerImage = docker.build("${env.DOCKER_IMAGE}:1", "-f Dockerfile .")
                         dockerImage.push()
                     }
                 }
