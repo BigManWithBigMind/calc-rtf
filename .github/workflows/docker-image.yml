@@ -16,10 +16,10 @@ jobs:
     - uses: actions/checkout@v2
     - name: docker login
       env:
-        DOCKER_USER: ${{secrets.DOCKER_USERNAME}}
-        DOCKER_PASSWORD: ${{secrets.DOCKER.PASSWORD}}
+        DOCKER_USER: ${{ secrets.DOCKER_USERNAME} }
+        DOCKER_PASSWORD: ${{ secrets.DOCKER.PASSWORD }}
       run:
-        docker login -u rusyasun -p w-Afsafsa13
+        docker login -u "$DOCKER_USER" -p "$DOCKER_PASSWORD"
     - name: Build the Docker image
       run: docker build . --file Dockerfile --tag rusyasun/calculator-app:${{ github.sha }}
 
