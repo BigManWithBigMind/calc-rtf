@@ -36,7 +36,7 @@ pipeline {
         stage('Test Calculator') {
             steps {
                 // Запуск тестов (например, с использованием curl)
-                sh 'curl -X POST -H "Content-Type: application/json" -d \'{"a": 5, "b": 3, "operation": "add"}\' http://192.168.1.5:5000/calculate'
+                sh 'curl -X POST -H "Content-Type: application/json" -d \'{"a": 5, "b": 3, "operation": "add"}\' http://localhost:5000/calculate'
                 // Добавьте дополнительные тесты
             }
         }
