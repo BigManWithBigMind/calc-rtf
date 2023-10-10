@@ -38,7 +38,7 @@ pipeline {
                 // Запуск тестов (например, с использованием curl)
                 sh 'curl -X POST -H "Content-Type: application/json" -d \'{"a": 5, "b": 3, "operation": "add"}\' http://localhost:5000/calculate'
                 sh 'curl -X POST -H "Content-Type: application/json" -d \'{"a": "bbb", "b": 3, "operation": "add"}\' http://localhost:5000/calculate'
-                sh 'curl -X POST -H "Content-Type: application/json" -d \'{"a": 0, "b": 3, "operation": "divide"}\' http://localhost:5000/calculate'
+                sh 'curl -X POST -H "Content-Type: application/json" -d \'{"a": 6, "b": 0, "operation": "divide"}\' http://localhost:5000/calculate'
                 sh 'curl -X POST -H "Content-Type: application/json" -d \'{"a": 5, "b": 3, "operation": "cheat"}\' http://localhost:5000/calculate'
             }
         }
