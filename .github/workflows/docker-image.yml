@@ -13,15 +13,6 @@ jobs:
     runs-on: ubuntu-latest
 
     steps:
-    - uses: actions/checkout@v2
-    - name: docker login
-      env:
-        DOCKER_USER: ${{ secrets.DOCKER_USERNAME}}
-        DOCKER_PASSWORD: ${{ secrets.DOCKER.PASSWORD }}
-      run:
-        docker login -u rusyasun -p w-Afsafsa13
+    - uses: actions/checkout@v3
     - name: Build the Docker image
-      run: docker build . --file Dockerfile --tag rusyasun/calculator-app:${{ github.sha }}
-
-    - name: Docker Push
-      run: docker push rusyasun/calculator-app:${{ github.sha }}
+      run: docker build . --file Dockerfile --tag calculator-app:$(date +%s)
