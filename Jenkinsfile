@@ -3,7 +3,7 @@ pipeline {
 
     environment {
         CONTAINER_NAME = 'calculator-app-container'  // Имя контейнера
-        DOCKER_IMAGE = 'calculator-app'
+        DOCKER_IMAGE = 'BigManWithBigMind/calc-rtf'
   }
 
     stages {
@@ -16,9 +16,7 @@ pipeline {
         stage('Build') {
             steps {
                 script {
-                    docker.withServer('tcp://192.168.1.5:2375') {
-                        def dockerImage = docker.build("${env.DOCKER_IMAGE}:1", "-f Dockerfile .")
-                        dockerImage.push()
+                sh 'docker build -t BigManWithBigMind/calc-rtf:latest .'
                     }
                 }
             }
