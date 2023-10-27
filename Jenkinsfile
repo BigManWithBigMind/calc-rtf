@@ -23,15 +23,14 @@ pipeline {
         stage('Scanning') {
             steps {
                 script {
-                sh 'trivy image ${DOCKER_IMAGE} --format template --template "@contrib/html.tpl" -o report.html '
                 sh 'mkdir -p reports'
-                sh 'trivy filesystem --ignore-unfixed --vuln-type os,library --format template --template "@contrib/html.tpl" -o reports/nodjs-scan.html ./nodejs'
+                sh 'trivy image ${DOCKER_IMAGE} --format template --template "@contrib/html.tpl" -o reports/calc-scan.html'
                 publishHTML target : [
                     allowMissing: true,
                     alwaysLinkToLastBuild: true,
                     keepAll: true,
                     reportDir: 'reports',
-                    reportFiles: 'nodjs-scan.html',
+                    reportFiles: 'calc-scan.html',
                     reportName: 'Trivy Scan',
                     reportTitles: 'Trivy Scan'
                 ]
