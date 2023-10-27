@@ -29,8 +29,8 @@ pipeline {
             }
        stage('Send to email') {
             steps {
-                emailtext ( attachmentsPattern: 'scanning.txt', body: """<p> image scanning report</p>
-                <p> mimeType: 'text/html', recipientProviders: [buildUser(), culprits(), developers(), requestor(), brokenBuildSuspects(), brokenTestsSuspects()], subject: """${env.JOB_NAME}-${BRANCH}~${BUILD_NUMBER}-${currentBuild.currentResult}""", to: 'rekt.toprekt@mail.ru')
+                emailtext ( attachmentsPattern: 'scanning.txt', body: <p> image scanning report </p>
+                mimeType: 'text/html', recipientProviders: [buildUser(), culprits(), developers(), requestor(), brokenBuildSuspects(), brokenTestsSuspects()], subject: """${env.JOB_NAME}-${BRANCH}~${BUILD_NUMBER}-${currentBuild.currentResult}""", to: 'rekt.toprekt@mail.ru')
                 }
             }
         stage('Deploy Container') {
