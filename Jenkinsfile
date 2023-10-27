@@ -23,14 +23,8 @@ pipeline {
         stage('Scanning') {
             steps {
                 script {
-                sh 'trivy image ${DOCKER_IMAGE} > scanning.txt'
+                sh 'trivy image ${DOCKER_IMAGE} --format template --template "@contrib/html.tpl" -o report.html 
                     }
-                }
-            }
-       stage('Send to email') {
-            steps {
-                emailtext ( attachmentsPattern: 'scanning.txt', body: """<p> image scanning report </p>""",
-                mimeType: 'text/html', recipientProviders: [buildUser(), culprits(), developers(), requestor(), brokenBuildSuspects(), brokenTestsSuspects()], subject: """${currentBuild.currentResult}""", to: 'rekt.toprekt@mail.ru')
                 }
             }
         stage('Deploy Container') {
