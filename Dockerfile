@@ -1,5 +1,5 @@
 # Используйте базовый образ Python
-FROM python:3.8-slim
+FROM python:3.8-slim-buster
 
 # Установите зависимости
 RUN pip install flask
