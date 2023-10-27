@@ -23,7 +23,7 @@ pipeline {
         stage('Scanning') {
             steps {
                 script {
-                sh 'trivy image ${DOCKER_IMAGE} --format template --template "@contrib/html.tpl" -o report.html 
+                sh 'trivy image ${DOCKER_IMAGE} --format template --template "@contrib/html.tpl" -o report.html '
                     }
                 }
             }
