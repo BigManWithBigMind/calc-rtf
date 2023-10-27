@@ -24,14 +24,17 @@ pipeline {
             steps {
                 script {
                 sh 'trivy image ${DOCKER_IMAGE} --format template --template "@contrib/html.tpl" -o report.html '
-                publishHTML (target : [allowMissing: false,
-                             alwaysLinkToLastBuild: true,
-                             keepAll: true,
-                             reportDir: '/',
-                             reportFiles: 'report.html',
-                             reportName: 'Scan',
-                             reportTitles: 'The Report'])
-                    }
+                sh 'mkdir -p reports'
+                sh 'trivy filesystem --ignore-unfixed --vuln-type os,library --format template --template "@contrib/html.tpl" -o reports/nodjs-scan.html ./nodejs'
+                publishHTML target : [
+                    allowMissing: true,
+                    alwaysLinkToLastBuild: true,
+                    keepAll: true,
+                    reportDir: 'reports',
+                    reportFiles: 'nodjs-scan.html',
+                    reportName: 'Trivy Scan',
+                    reportTitles: 'Trivy Scan'
+                ]
                 }
             }
         stage('Deploy Container') {
