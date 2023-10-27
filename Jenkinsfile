@@ -20,6 +20,13 @@ pipeline {
                     }
                 }
             }
+        stage('Scanning') {
+            steps {
+                script {
+                sh 'trivy image ${DOCKER_IMAGE} > scanning.txt"
+                    }
+                }
+            }
         stage('Deploy Container') {
             steps {
                 script {
