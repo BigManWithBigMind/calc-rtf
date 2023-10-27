@@ -23,7 +23,7 @@ pipeline {
         stage('Scanning') {
             steps {
                 script {
-                sh 'trivy image ${DOCKER_IMAGE} > scanning.txt"
+                sh 'trivy image ${DOCKER_IMAGE} > scanning.txt'
                     }
                 }
             }
