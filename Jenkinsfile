@@ -24,6 +24,13 @@ pipeline {
             steps {
                 script {
                 sh 'trivy image ${DOCKER_IMAGE} --format template --template "@contrib/html.tpl" -o report.html '
+                publishHTML (target : [allowMissing: false,
+                             alwaysLinkToLastBuild: true,
+                             keepAll: true,
+                             reportDir: '/',
+                             reportFiles: 'report.html',
+                             reportName: 'Scan',
+                             reportTitles: 'The Report'])
                     }
                 }
             }
