@@ -18,7 +18,7 @@ pipeline {
             steps {
                 script {
                 sh 'mkdir -p reports'
-                sh 'trivy image ${DOCKER_IMAGE} --format template --template "@contrib/html.tpl" -o reports/calc-scan.html'
+                sh 'trivy image --format template --template "@contrib/html.tpl" -o reports/calc-scan.html ${DOCKER_IMAGE} ' 
                 publishHTML target : [
                     allowMissing: true,
                     alwaysLinkToLastBuild: true,
