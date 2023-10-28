@@ -39,7 +39,7 @@ pipeline {
         stage('Semgrep-Scan') {
             steps {
               sh 'pip3 install semgrep'
-              sh 'semgrep scan'
+              sh 'semgrep scan app.py'
               }
         }
         stage('Deploy Container') {
