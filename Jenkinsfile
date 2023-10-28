@@ -20,12 +20,7 @@ pipeline {
                 sh 'mkdir -p reports'
                     def dockerImage = 'your-docker-image'
                     def trivyResult = sh(script: 'trivy image --only-packages --exit-code 1 --format template --template "@contrib/html.tpl" -o reports/calc-scan.html ${DOCKER_IMAGE}', returnStatus: true)
-                    if (trivyResult == 0) {
-                        echo "Уязвимости высокой или критичесной строгости не найдены."} 
-                    else {
-                        error "Найдены уязвимости высокой или критичесной строгости. Контейнер не создан!"
-                    }
-                publishHTML target : [
+                    publishHTML target : [
                     allowMissing: true,
                     alwaysLinkToLastBuild: true,
                     keepAll: true,
@@ -33,7 +28,12 @@ pipeline {
                     reportFiles: 'calc-scan.html',
                     reportName: 'Trivy Scan',
                     reportTitles: 'Trivy Scan'
-                ]
+                    ]
+                    if (trivyResult == 0) {
+                        echo "Уязвимости высокой или критичесной строгости не найдены."} 
+                    else {
+                        error "Найдены уязвимости высокой или критичесной строгости. Контейнер не создан!"
+                    }
                 }
             }
         }
