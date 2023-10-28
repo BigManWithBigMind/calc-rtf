@@ -2,7 +2,7 @@
 FROM python:3.8-slim-buster
 
 # Установите зависимости
-RUN pip install setuptools==20.7.0
+RUN pip install setuptools==65.5.1
 RUN pip install flask
 # Копируйте код приложения в контейнер
 COPY . /app
