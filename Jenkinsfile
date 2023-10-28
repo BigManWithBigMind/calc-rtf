@@ -36,6 +36,11 @@ pipeline {
                 }
             }
         }
+        stage('Semgrep-Scan') {
+        steps {
+          sh 'pip3 install semgrep'
+          sh 'semgrep ${DOCKER_IMAGE}'
+      }
         stage('Deploy Container') {
             steps {
                 script {
