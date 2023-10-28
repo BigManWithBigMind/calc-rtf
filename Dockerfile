@@ -3,7 +3,7 @@ FROM python:3.8-slim-buster
 
 # Установите зависимости
 RUN pip install flask
-RUN pip unistall setuptools
+RUN pip uninstall setuptools
 # Копируйте код приложения в контейнер
 COPY . /app
 # Установите рабочую директорию
