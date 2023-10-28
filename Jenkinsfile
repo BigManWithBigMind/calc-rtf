@@ -18,8 +18,7 @@ pipeline {
             steps {
                 script {
                 sh 'mkdir -p reports'
-                    def dockerImage = 'your-docker-image'
-                    def trivyResult = sh(script: 'trivy config ./app/app.py --exit-code 1 --format template --template "@contrib/html.tpl" -o reports/calc-scan.html ${DOCKER_IMAGE}', returnStatus: true)
+                    def trivyResult = sh(script: 'trivy fs ./app/app.py --exit-code 1 --format template --template "@contrib/html.tpl" -o reports/calc-scan.html ${DOCKER_IMAGE}', returnStatus: true)
                     publishHTML target : [
                     allowMissing: true,
                     alwaysLinkToLastBuild: true,
