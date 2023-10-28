@@ -18,7 +18,14 @@ pipeline {
             steps {
                 script {
                 sh 'mkdir -p reports'
-                sh 'trivy image --format template --template "@contrib/html.tpl" -o reports/calc-scan.html ${DOCKER_IMAGE} ' 
+                sh 'trivy image --format template --template "@contrib/html.tpl" -o reports/calc-scan.html ${DOCKER_IMAGE} '
+                    def dockerImage = 'your-docker-image'
+                    def trivyResult = sh(script: "trivy --only-packages --exit-code 1 $dockerImage", returnStatus: true)
+                    if (trivyResult == 0) {
+                        echo "Уязвимости высокой или критичесной строгости не найдены."} 
+                    else {
+                        error "Уязвимости высокой или критичесной строгости найден. Контейнер не создан!"
+                    }
                 publishHTML target : [
                     allowMissing: true,
                     alwaysLinkToLastBuild: true,
